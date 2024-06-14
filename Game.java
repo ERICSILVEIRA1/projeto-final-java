@@ -47,6 +47,7 @@ public class Game {
         } catch (FileNotFoundException e) {
             System.out.println("Erro ao criar arquivo: " + e.getMessage());
         }
+        game.writeCardsToFile("cards.txt");
     }
     public Player getPlayer1() {
         return player1;
@@ -130,5 +131,5 @@ public class Game {
             return false;
         return true;
     }
-game.writeCardsToFile("cards.txt");
+
 }
