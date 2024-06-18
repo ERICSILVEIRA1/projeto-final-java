@@ -28,16 +28,31 @@ public class Game {
         this.game = game;
     }
 
-    public void startGame() {
-        // Implementar lógica para iniciar o jogo
-    }
-    public void playTurn() {
-        // Implementar lógica para jogar um turno
+        public void startGame() {
+            deck.shuffle(); // Embaralha o deck
+            int halfDeckSize = deck.getCards().length / 2;
+            player1.setHand(new Hand(deck.drawCards(halfDeckSize))); // Distribui metade do deck para o jogador 1
+            player2.setHand(new Hand(deck.drawCards(halfDeckSize))); // Distribui metade do deck para o jogador 2
     }
 
-    public void endGame() {
-        // Implementar lógica para terminar o jogo
-    }
+   
+        public void playTurn(Player currentPlayer) {
+            Card card = currentPlayer.getHand().drawCard(); // O jogador escolhe uma carta da sua mão
+            deck.addCard(card); // Adiciona a carta ao deck
+            System.out.println(currentPlayer.getName() + " jogou " + card); // Mostra a carta jogada
+        }
+    
+  
+        public void endGame() {
+            if (player1.getHand().isEmpty()) {
+                System.out.println("Jogador 2 venceu!");
+            } else if (player2.getHand().isEmpty()) {
+                System.out.println("Jogador 1 venceu!");
+            } else {
+                System.out.println("O jogo ainda não terminou.");
+            }
+        }
+    
 
     public void writeCardsToFile(String filename) {
         try (PrintWriter writer = new PrintWriter(filename)) {
@@ -130,6 +145,11 @@ public class Game {
         } else if (!game.equals(other.game))
             return false;
         return true;
+    }
+
+    public static void executar() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'executar'");
     }
 
 }

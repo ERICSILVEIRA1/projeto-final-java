@@ -20,4 +20,14 @@ public class Deck {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getCards'");
     }
+
+    public Object drawCards(int halfDeckSize) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'drawCards'");
+    }
+
+    public void shuffle() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'shuffle'");
+    }
 }

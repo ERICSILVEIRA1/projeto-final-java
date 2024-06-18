@@ -70,5 +70,10 @@ public class Player {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'split'");
     }
+
+    public void setHand(Hand hand2) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setHand'");
+    }
 }
 

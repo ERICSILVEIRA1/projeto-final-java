@@ -8,6 +8,10 @@ public class Hand {
         this.cards = new ArrayList<>();
     }
 
+    public Hand(Object drawCards) {
+        //TODO Auto-generated constructor stub
+    }
+
     public void addCard(Card card) {
         cards.add(card);
     }
@@ -22,6 +26,21 @@ public class Hand {
     public int calculatedValue() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'calculatedValue'");
+    }
+
+    public boolean isEmpty() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isEmpty'");
+    }
+
+    public Card drawCard() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'drawCard'");
+    }
+
+    public Card getCards() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCards'");
     }
 
 }
