@@ -108,5 +108,10 @@ public class Console {
                 }
             }
         }
+
+        public static void executar() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'executar'");
+        }
     }
 }

@@ -2,24 +2,10 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 public class Game {
-    public static void main(String[] args) {
-        Player player1 = new Player("Player 1");
-        Player player2 = new Player("Player 2");
-        Game game = new Game(player1, player2);
-        game.writeCardsToFile("cards.txt");
-    }
     private Player player1;
     private Player player2;
-
     private Deck deck;
-
-    Game game = new Game(player1, player2);
-
-    public Game(Player player1, Player player2) {
-        this.player1 = player1;
-        this.player2 = player2;
-        this.deck = new Deck();
-    }
+    private Game game;
 
     public Game(Player player1, Player player2, Deck deck, Game game) {
         this.player1 = player1;
@@ -28,31 +14,28 @@ public class Game {
         this.game = game;
     }
 
-        public void startGame() {
-            deck.shuffle(); // Embaralha o deck
-            int halfDeckSize = deck.getCards().length / 2;
-            player1.setHand(new Hand(deck.drawCards(halfDeckSize))); // Distribui metade do deck para o jogador 1
-            player2.setHand(new Hand(deck.drawCards(halfDeckSize))); // Distribui metade do deck para o jogador 2
+    public void startGame() {
+        deck.shuffle(); // Embaralha o deck
+        int halfDeckSize = deck.getCards().length / 2;
+        player1.setHand(new Hand(deck.drawCards(halfDeckSize))); // Distribui metade do deck para o jogador 1
+        player2.setHand(new Hand(deck.drawCards(halfDeckSize))); // Distribui metade do deck para o jogador 2
     }
 
-   
-        public void playTurn(Player currentPlayer) {
-            Card card = currentPlayer.getHand().drawCard(); // O jogador escolhe uma carta da sua mão
-            deck.addCard(card); // Adiciona a carta ao deck
-            System.out.println(currentPlayer.getName() + " jogou " + card); // Mostra a carta jogada
+    public void playTurn(Player currentPlayer) {
+        Card card = currentPlayer.getHand().drawCard(); // O jogador escolhe uma carta da sua mão
+        deck.addCard(card); // Adiciona a carta ao deck
+        System.out.println(currentPlayer.getName() + " jogou " + card); // Mostra a carta jogada
+    }
+
+    public void endGame() {
+        if (player1.getHand().isEmpty()) {
+            System.out.println("Jogador 2 venceu!");
+        } else if (player2.getHand().isEmpty()) {
+            System.out.println("Jogador 1 venceu!");
+        } else {
+            System.out.println("O jogo ainda não terminou.");
         }
-    
-  
-        public void endGame() {
-            if (player1.getHand().isEmpty()) {
-                System.out.println("Jogador 2 venceu!");
-            } else if (player2.getHand().isEmpty()) {
-                System.out.println("Jogador 1 venceu!");
-            } else {
-                System.out.println("O jogo ainda não terminou.");
-            }
-        }
-    
+    }
 
     public void writeCardsToFile(String filename) {
         try (PrintWriter writer = new PrintWriter(filename)) {
@@ -64,6 +47,9 @@ public class Game {
         }
         game.writeCardsToFile("cards.txt");
     }
+
+    // Getters and Setters
+
     public Player getPlayer1() {
         return player1;
     }
@@ -95,6 +81,8 @@ public class Game {
     public void setGame(Game game) {
         this.game = game;
     }
+
+    // toString, hashCode, and equals methods
 
     @Override
     public String toString() {
@@ -151,5 +139,4 @@ public class Game {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'executar'");
     }
-
 }

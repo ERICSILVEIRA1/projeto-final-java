@@ -43,4 +43,14 @@ public class Hand {
         throw new UnsupportedOperationException("Unimplemented method 'getCards'");
     }
 
+    public MonsterCard playCard() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'playCard'");
+    }
+
+    public int getCardCount() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCardCount'");
+    }
+
 }

@@ -23,4 +23,14 @@ public class MonsterCard extends Card {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'writeToFile'");
     }
+
+    public int getAttack() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAttack'");
+    }
+
+    public int getDefense() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getDefense'");
+    }
 }
