@@ -29,9 +29,12 @@ public abstract class Card {
         return defensePoints;
     }
 
-    protected static void add(Card card) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+    
+
+    @Override
+    public String toString() {
+        return "Card [name=" + name + ", description=" + description + ", attackPoints=" + attackPoints
+                + ", defensePoints=" + defensePoints + "]";
     }
 
     protected abstract Card get(int index);
