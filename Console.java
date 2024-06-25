@@ -1,117 +1,62 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class Console {
-    public static void main(String[] args) {
-        // Criar um novo jogo
-        Game game = new Game();
 
-        // Inicia o jogo
-        game.startGame();
+    // private: apenas esta classe enxerga o "leitor"
+    // static: esta classe gerencia o "leitor"
+    private static Scanner leitor = new Scanner(System.in);
+
+    // método para ler e retornar um valor String:
+    public static String lerString(String msg) {
+        System.out.print(msg + " ");
+        String valor = leitor.nextLine();
+        return valor;
     }
 
-    public static class Game {
+    // método para ler e retornar um valor int:
+    public static int lerInt(String msg) {
+        int valor = 0;
 
-        private static final String Player1 = null;
-        private static final String Player = null;
-        private static final String Dealer = null;
+        while (true) {
+            try {
+                System.out.print(msg + " ");
+                valor = leitor.nextInt();
+                break;
 
-        public static String getPlayer1() {
-            return Player1;
-        }
+            } catch (InputMismatchException e) {
+                System.out.println("O valor digitado não é do tipo 'int'");
 
-        public void startGame() {
-            // Cria um novo deck de cartas
-            Deck deck = new Deck();
+            } finally {
 
-            // Cria um novo jogador e um novo duelista
-            Player player = new Player(Player);
-            Dealer dealer = new Dealer(Dealer);
-            player.setDealer(dealer);
-            dealer.setPlayer(player);
-           
-
-            // Distribui cartas para o jogador e o dealer
-            player.drawCard(deck);
-            player.drawCard(deck);
-            dealer.drawCard(deck);
-            dealer.drawCard(deck);
-
-            // Mostra as cartas do jogador e do dealer
-            player.printHand();
-            dealer.printFirstHand();
-
-            // Inicia o turno do jogador
-            playerTurn(player, dealer, deck);
-        }
-
-        public void playerTurn(Player player, Dealer dealer, Deck deck) {
-            // Mostra as opções do jogador
-            System.out.println("Opções:");
-            System.out.println("1. Hit");
-            System.out.println("2. Stand");
-            System.out.println("3. Double Down");
-            System.out.println("4. Split");
-
-            // Le a escolha do jogador
-            int choice = Integer.parseInt(System.console().readLine());
-
-            // Processa a escolha do jogador
-            switch (choice) {
-                case 1:
-                    player.hit(deck);
-                    break;
-                case 2:
-                    player.stand();
-                    break;
-                case 3:
-                    player.doubleDown(deck);
-                    break;
-                case 4:
-                    player.split(deck);
-                    break;
-                default:
-                    System.out.println("Opção inválida");
-            }
-
-            // Verifica se o jogador venceu ou perdeu
-            if (player.getHand().calculatedValue() > 21) {
-                System.out.println("Você perdeu!");
-            } else if (player.getHand().calculatedValue() == 21) {
-                System.out.println("Você venceu!");
-            } else {
-                // Inicia o turno do dealer
-                dealerTurn(dealer, deck);
+                leitor.nextLine(); // limpeza de buffer
             }
         }
 
-        public void dealerTurn(Dealer dealer, Deck deck) {
-            // Mostra as cartas do dealer
-            dealer.printHand();
-
-            // Verifica se o dealer precisa puxar mais cartas
-            while (dealer.getHand().calculatedValue() < 17) {
-                dealer.hit(deck);
-            }
-
-            // Verifica se o dealer venceu ou perdeu
-    if (dealer.getHand().calculatedValue() > 21) {
-        System.out.println("O dealer perdeu!");
-    } else if (dealer.getHand().calculatedValue() == 21) {
-        System.out.println("O dealer venceu!");
-    } else {
-        Player player = new Player(Console.Game.Player); // Declara e inicializa a variavel player
-        // Compara as mãos do jogador e do dealer
-        if (player.getHand().calculatedValue() <= dealer.getHand().calculatedValue()) {
-            System.out.println("Você venceu!");
-        } else if (player.getHand().calculatedValue() < dealer.getHand().calculatedValue()) {
-                    System.out.println("O dealer venceu!");
-                } else {
-                    System.out.println("Empate!");
-                }
-            }
-        }
-
-        public static void executar() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'executar'");
-        }
+        return valor;
     }
+
+    // método para ler e retornar um valor float:
+    public static float lerFloat(String msg) {
+
+        float valor = 0;
+        while (true) {
+
+            try {
+                System.out.print(msg + " ");
+                valor = leitor.nextFloat();
+                break;
+
+            } catch (InputMismatchException e) {
+                System.out.println("O valor digitado não é do tipo 'float'");
+
+            } finally {
+
+                leitor.nextLine(); // limpeza de buffer
+            }
+
+        }
+        return valor;
+    }
+
 }
