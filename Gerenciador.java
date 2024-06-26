@@ -14,7 +14,7 @@ public abstract class Gerenciador {
         try (FileWriter fWriter = new FileWriter(ARQUIVO, true);
                 BufferedWriter bWriter = new BufferedWriter(fWriter)) {
 
-            bWriter.write(game + "\n");
+            bWriter.write(game.toString() + "\n");
 
         } catch (IOException e) {
             System.out.println("Houve um erro ao criar ou acessar o arquivo " + ARQUIVO);
@@ -30,9 +30,7 @@ public abstract class Gerenciador {
             String linha;
 
             while ((linha = bReader.readLine()) != null) {
-
                 System.out.println(linha);
-
             }
 
         }
@@ -51,23 +49,54 @@ public abstract class Gerenciador {
             while ((linha = bReader.readLine()) != null) {
 
                 String[] dadosGame = linha.split(", ");
-
-                String dadosGame;
-                Game game = new Game(Integer.parseInt(dadosGame[0]),
-                        dadosGame[1],
-                        dadosGame[2]);
-
-                listaJogos.add(game);
+                if (dadosGame.length == 3) {
+                    Game game = new Game(Integer.parseInt(dadosGame[0]),
+                            dadosGame[1],
+                            dadosGame[2]);
+                    listaJogos.add(game);
+                }
             }
         }
 
         if (listaJogos.isEmpty()) {
-
             throw new Exception("\nNão há jogos cadastrados!");
         }
 
         return listaJogos;
-
     }
 
+    public static void main(String[] args) {
+        // Testando os métodos
+        try {
+            Game game1 = new Game(1, "Game1", "Description1");
+            salvarJogo(game1);
+
+            lerGame();
+
+            ArrayList<Game> games = getListaGame();
+            for (Game game : games) {
+                System.out.println(game);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+
+class Game {
+    private int id;
+    private String name;
+    private String description;
+
+    public Game(int id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return id + ", " + name + ", " + description;
+    }
 }
