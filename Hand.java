@@ -18,7 +18,7 @@ public class Hand {
 
     public Card getCard(int index) {
         if (index < 0 || index >= cards.size()) {
-            throw new IndexOutOfBoundsException("Card index inválido");
+            throw new IndexOutOfBoundsException("Índice de carta inválido: " + index);
         }
         return cards.get(index);
     }
@@ -36,7 +36,7 @@ public class Hand {
             }
         }
 
-        // Consider Ace as 11 if it doesn't bust the hand
+        // Considerar Ace como 11 se não estourar a mão
         for (int i = 0; i < aces; i++) {
             if (value + 11 <= 21) {
                 value += 11;
@@ -57,9 +57,9 @@ public class Hand {
             case "Jack": case "Queen": case "King":
                 return 10;
             case "Ace":
-                return 0; // Ace handled separately in calculatedValue
+                return 0; // Ace é tratado separadamente em calculatedValue
             default:
-                throw new IllegalArgumentException("Invalid card rank: " + rank);
+                throw new IllegalArgumentException("Rank de carta inválido: " + rank);
         }
     }
 
@@ -68,10 +68,10 @@ public class Hand {
     }
 
     public Card drawCard() {
-        if (cards.isEmpty())/*Remove o elemento no índice 0 da lista cards. Esse índice representa a primeira posição na lista. */ {
-            throw new IllegalStateException("No cards left in the hand");
+        if (cards.isEmpty()) {
+            throw new IllegalStateException("Não há cartas na mão");
         }
-        return cards.remove(0);/*Retorna o objeto Card que foi removido da lista. */
+        return cards.remove(0);
     }
 
     public List<Card> getCards() {
@@ -80,54 +80,5 @@ public class Hand {
 
     public int getCardCount() {
         return cards.size();
-    }
-}
-
-// Classe Card para complementar
-class Card {
-    private String rank;
-    private String suit;
-
-    public Card(String rank, String suit) {
-        this.rank = rank;
-        this.suit = suit;
-    }
-
-    public String getRank() {
-        return rank;
-    }
-
-    public String getSuit() {
-        return suit;
-    }
-
-    @Override
-    public String toString() {
-        return rank + " of " + suit;
-    }
-}
-
-// Classe MonsterCard para complementar
-class MonsterCard extends Card {
-    private int attackPoints;
-    private int defensePoints;
-
-    public MonsterCard(String rank, String suit, int attackPoints, int defensePoints) {
-        super(rank, suit);
-        this.attackPoints = attackPoints;
-        this.defensePoints = defensePoints;
-    }
-
-    public int getAttackPoints() {
-        return attackPoints;
-    }
-
-    public int getDefensePoints() {
-        return defensePoints;
-    }
-
-    @Override
-    public String toString() {
-        return super.toString() + " (ATK: " + attackPoints + ", DEF: " + defensePoints + ")";
     }
 }
