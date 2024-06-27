@@ -10,22 +10,19 @@ public abstract class Gerenciador {
     private static final String ARQUIVO = "game.txt";
 
     public static void salvarJogo(Game game) {
-
         try (FileWriter fWriter = new FileWriter(ARQUIVO, true);
-                BufferedWriter bWriter = new BufferedWriter(fWriter)) {
+             BufferedWriter bWriter = new BufferedWriter(fWriter)) {
 
             bWriter.write(game.toString() + "\n");
 
         } catch (IOException e) {
             System.out.println("Houve um erro ao criar ou acessar o arquivo " + ARQUIVO);
         }
-
     }
 
-    public static void lerGame() throws IOException {
-
+    public static void lerGame() {
         try (FileReader fReader = new FileReader(ARQUIVO);
-                BufferedReader bReader = new BufferedReader(fReader)) {
+             BufferedReader bReader = new BufferedReader(fReader)) {
 
             String linha;
 
@@ -33,33 +30,36 @@ public abstract class Gerenciador {
                 System.out.println(linha);
             }
 
+        } catch (IOException e) {
+            System.out.println("Houve um erro ao ler o arquivo " + ARQUIVO);
         }
-
     }
 
-    public static ArrayList<Game> getListaGame() throws IOException, Exception {
-
+    public static ArrayList<Game> getListaGame() throws IOException {
         ArrayList<Game> listaJogos = new ArrayList<>();
 
         try (FileReader fReader = new FileReader(ARQUIVO);
-                BufferedReader bReader = new BufferedReader(fReader)) {
+             BufferedReader bReader = new BufferedReader(fReader)) {
 
             String linha;
 
             while ((linha = bReader.readLine()) != null) {
-
                 String[] dadosGame = linha.split(", ");
                 if (dadosGame.length == 3) {
-                    Game game = new Game(Integer.parseInt(dadosGame[0]),
-                            dadosGame[1],
-                            dadosGame[2]);
-                    listaJogos.add(game);
+                    try {
+                        Game game = new Game(Integer.parseInt(dadosGame[0]), dadosGame[1], dadosGame[2]);
+                        listaJogos.add(game);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Erro ao converter ID do jogo: " + dadosGame[0]);
+                    }
+                } else {
+                    System.out.println("Formato de linha inválido: " + linha);
                 }
             }
         }
 
         if (listaJogos.isEmpty()) {
-            throw new Exception("\nNão há jogos cadastrados!");
+            throw new IOException("\nNão há jogos cadastrados!");
         }
 
         return listaJogos;
@@ -80,23 +80,5 @@ public abstract class Gerenciador {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-}
-
-class Game {
-    private int id;
-    private String name;
-    private String description;
-
-    public Game(int id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return id + ", " + name + ", " + description;
     }
 }
