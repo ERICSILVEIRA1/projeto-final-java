@@ -1,5 +1,5 @@
 import java.io.PrintWriter;
-// Classe card mudou
+// Classe card atualizada
 
 public abstract class Card {
     private String name;
