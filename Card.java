@@ -1,4 +1,5 @@
 import java.io.PrintWriter;
+// Classe card
 
 public abstract class Card {
     private String name;
@@ -7,6 +8,18 @@ public abstract class Card {
     private int defensePoints;
 
     public Card(String name, String description, int attackPoints, int defensePoints) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be null or empty");
+        }
+        if (description == null || description.isEmpty()) {
+            throw new IllegalArgumentException("Description cannot be null or empty");
+        }
+        if (attackPoints < 0) {
+            throw new IllegalArgumentException("Attack points cannot be negative");
+        }
+        if (defensePoints < 0) {
+            throw new IllegalArgumentException("Defense points cannot be negative");
+        }
         this.name = name;
         this.description = description;
         this.attackPoints = attackPoints;
@@ -28,8 +41,6 @@ public abstract class Card {
     public int getDefensePoints() {
         return defensePoints;
     }
-
-    
 
     @Override
     public String toString() {
