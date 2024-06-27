@@ -1,45 +1,50 @@
 public class GameDois {
     public static void main(String[] args) {
-        // Criar um novo jogo
-        Game game = new Game();
+        // Cria um novo jogo
+        Game game = new Game(new Player("Jogador 1"), new Player("Jogador 2"), new Deck());
 
         // Inicia o jogo
         game.startGame();
     }
 
     public static class Game {
+        private Player player1;
+        private Player player2;
+        private Deck deck;
 
-        private static final String Player1 = null;
-        private static final String Player = null;
-        private static final String Dealer = null;
-
-        public static String getPlayer1() {
-            return Player1;
+        public Game(Player player1, Player player2, Deck deck) {
+            this.player1 = player1;
+            this.player2 = player2;
+            this.deck = deck;
         }
 
         public void startGame() {
             // Cria um novo deck de cartas
-            Deck deck = new Deck();
+            deck = new Deck();
 
-            // Cria um novo jogador e um novo duelista
-            Player player = new Player(Player);
-            Dealer dealer = new Dealer(Dealer);
-            player.setDealer(dealer);
-            dealer.setPlayer(player);
-           
+            // Adiciona cartas ao deck
+            for (int i = 1; i <= 52; i++) {
+                deck.addCard(new Card("Card" + i, "Description" + i, i % 13, i % 13));
+            }
+
+            // Embaralha o deck
+            deck.shuffle();
+
+            // Cria um novo dealer
+            Dealer dealer = new Dealer("Dealer");
 
             // Distribui cartas para o jogador e o dealer
-            player.drawCard(deck);
-            player.drawCard(deck);
+            player1.drawCard(deck);
+            player1.drawCard(deck);
             dealer.drawCard(deck);
             dealer.drawCard(deck);
 
             // Mostra as cartas do jogador e do dealer
-            player.printHand();
+            player1.printHand();
             dealer.printFirstHand();
 
             // Inicia o turno do jogador
-            playerTurn(player, dealer, deck);
+            playerTurn(player1, dealer, deck);
         }
 
         public void playerTurn(Player player, Dealer dealer, Deck deck) {
@@ -50,8 +55,9 @@ public class GameDois {
             System.out.println("3. Double Down");
             System.out.println("4. Split");
 
-            // Le a escolha do jogador
-            int choice = Integer.parseInt(System.console().readLine());
+            // Lê a escolha do jogador
+            Scanner scanner = new Scanner(System.in);
+            int choice = scanner.nextInt();
 
             // Processa a escolha do jogador
             switch (choice) {
@@ -92,26 +98,20 @@ public class GameDois {
             }
 
             // Verifica se o dealer venceu ou perdeu
-    if (dealer.getHand().calculatedValue() > 21) {
-        System.out.println("O dealer perdeu!");
-    } else if (dealer.getHand().calculatedValue() == 21) {
-        System.out.println("O dealer venceu!");
-    } else {
-        Player player = new Player(GameDois.Game.Player); // Declara e inicializa a variavel player
-        // Compara as mãos do jogador e do dealer
-        if (player.getHand().calculatedValue() <= dealer.getHand().calculatedValue()) {
-            System.out.println("Você venceu!");
-        } else if (player.getHand().calculatedValue() < dealer.getHand().calculatedValue()) {
+            if (dealer.getHand().calculatedValue() > 21) {
+                System.out.println("O dealer perdeu!");
+            } else if (dealer.getHand().calculatedValue() == 21) {
+                System.out.println("O dealer venceu!");
+            } else {
+                // Compara as mãos do jogador e do dealer
+                if (player1.getHand().calculatedValue() > dealer.getHand().calculatedValue()) {
+                    System.out.println("Você venceu!");
+                } else if (player1.getHand().calculatedValue() < dealer.getHand().calculatedValue()) {
                     System.out.println("O dealer venceu!");
                 } else {
                     System.out.println("Empate!");
                 }
             }
-        }
-
-        public static void executar() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'executar'");
         }
     }
 }
