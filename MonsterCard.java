@@ -14,23 +14,26 @@ public class MonsterCard extends Card {
 
     @Override
     protected Card get(int index) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'get'");
+        throw new UnsupportedOperationException("Método 'get' não implementado para MonsterCard");
     }
 
     @Override
     protected void writeToFile(PrintWriter writer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'writeToFile'");
+        writer.println("Type: Monster Card");
+        writer.println("Name: " + getName());
+        writer.println("Description: " + getDescription());
+        writer.println("Attack Points: " + getAttackPoints());
+        writer.println("Defense Points: " + getDefensePoints());
+        writer.println("Level: " + level);
+        writer.println(); // Adiciona uma linha em branco para separar as cartas no arquivo
     }
 
+    // Métodos para acessar pontos de ataque e defesa diretamente
     public int getAttack() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAttack'");
+        return getAttackPoints();
     }
 
     public int getDefense() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDefense'");
+        return getDefensePoints();
     }
 }
