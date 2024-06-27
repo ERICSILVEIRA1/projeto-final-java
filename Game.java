@@ -10,6 +10,10 @@ public class Game {
     private Deck deck;
     private Game game;
 
+    public Game (int a, String b, String c){
+        
+    }
+
     public Game(Player player1, Player player2, Deck deck, Game game) {
         this.player1 = player1;
         this.player2 = player2;

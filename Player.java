@@ -67,4 +67,7 @@ public class Player {
     public void setHand(Hand hand) {
         this.hand = hand;
     }
+    public void drawCard(Deck d){
+
+    }
 }

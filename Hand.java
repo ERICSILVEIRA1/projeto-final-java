@@ -29,7 +29,7 @@ public class Hand {
 
         for (Card card : cards) {
             int cardValue = getCardValue(card);
-            if (card.getRank().equals("Ace")) {
+            if (card.getName().equals("Ace")) {
                 aces++;
             } else {
                 value += cardValue;
@@ -49,7 +49,8 @@ public class Hand {
     }
 
     private int getCardValue(Card card) {
-        String rank = card.getRank();
+        String rank = String.valueOf(card.getAttackPoints());
+
         switch (rank) {
             case "2": case "3": case "4": case "5": case "6":
             case "7": case "8": case "9": case "10":
@@ -80,5 +81,8 @@ public class Hand {
 
     public int getCardCount() {
         return cards.size();
+    }
+    public Card removeCard(Card c){
+        return this.getCard(getCardCount());
     }
 }

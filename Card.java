@@ -52,3 +52,4 @@ public abstract class Card {
 
     protected abstract void writeToFile(PrintWriter writer);
 }
+
