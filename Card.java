@@ -1,5 +1,5 @@
 import java.io.PrintWriter;
-// Classe card
+// Classe card mudou
 
 public abstract class Card {
     private String name;
