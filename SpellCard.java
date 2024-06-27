@@ -14,13 +14,21 @@ public class SpellCard extends Card {
 
     @Override
     protected Card get(int index) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'get'");
+        // Método não implementado para SpellCard
+        throw new UnsupportedOperationException("Method 'get' not implemented for SpellCard");
     }
 
     @Override
     protected void writeToFile(PrintWriter writer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'writeToFile'");
+        writer.println("Card Type: Spell");
+        writer.println("Name: " + getName());
+        writer.println("Description: " + getDescription());
+        writer.println("Attack Points: " + getAttackPoints());
+        writer.println("Defense Points: " + getDefensePoints());
+        writer.println("Effect: " + effect);
+        writer.println();
     }
 }
+
+//Classe Spell card atualizada
+
