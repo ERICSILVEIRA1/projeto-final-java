@@ -1,6 +1,9 @@
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
+//Atualizei a classe Game Adcionando o if else
+
+
 public class Game {
     private Player player1;
     private Player player2;
