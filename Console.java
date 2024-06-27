@@ -1,7 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-//Atualizando a classe Console adcionando Funçoes try catch 
+//Atualizando a classe Console adcionando Funçoes try catch
 
 public class Console {
 

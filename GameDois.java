@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class GameDois {
     public static void main(String[] args) {
         // Cria um novo jogo
@@ -24,7 +26,7 @@ public class GameDois {
 
             // Adiciona cartas ao deck
             for (int i = 1; i <= 52; i++) {
-                deck.addCard(new Card("Card" + i, "Description" + i, i % 13, i % 13));
+                deck.addCard(new Card(Card, "Description" + i, i % 13, i % 13));
             }
 
             // Embaralha o deck
