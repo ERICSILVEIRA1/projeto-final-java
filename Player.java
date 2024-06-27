@@ -34,46 +34,37 @@ public class Player {
 
     public void playCard(Card card) {
         // Implementar lógica para jogar cartas
-    }
-
-    public void drawCard(Deck deck2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'drawCard'");
+        hand.removeCard(card); // Exemplo simples: remove a carta da mão após jogá-la
     }
 
     public void setDealer(Dealer dealer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setDealer'");
+        // Implementação opcional, se necessário
     }
 
     public void printHand() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'printHand'");
+        System.out.println(name + "'s hand:");
+        for (Card card : hand.getCards()) {
+            System.out.println(card);
+        }
     }
 
-    public void hit(Deck deck2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'hit'");
+    public void hit(Deck deck) {
+        drawCard();
     }
 
     public void stand() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'stand'");
+        // Ação de "stand" do jogador (opcional)
     }
 
-    public void doubleDown(Deck deck2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'doubleDown'");
+    public void doubleDown(Deck deck) {
+        // Ação de "double down" do jogador (opcional)
     }
 
-    public void split(Deck deck2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'split'");
+    public void split(Deck deck) {
+        // Ação de "split" do jogador (opcional)
     }
 
-    public void setHand(Hand hand2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setHand'");
+    public void setHand(Hand hand) {
+        this.hand = hand;
     }
 }
-
